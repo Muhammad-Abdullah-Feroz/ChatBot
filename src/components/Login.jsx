@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-const Login = () => {
+const Login = (props) => {
     const users = [
         { username: "Abdullah Feroz", email: "feroz@gmail.com", password: "password1" },
         { username: "Ali Raza", email: "ali.raza@gmail.com", password: "password2" },
@@ -10,19 +10,21 @@ const Login = () => {
         { username: "Sara Malik", email: "sara.malik@gmail.com", password: "password5" },
       ];
       
+      const {
+          register,
+          handleSubmit,
+          formState: { errors },
+        } = useForm();
+        
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
-  const onSubmit = (data) => {
-    const loggedInUser = users.find(user => user.email === data.email && user.password === data.password)
-    if(loggedInUser){
-        alert(`Welcome ${loggedInUser.username}`)
+        const onSubmit = (data) => {
+            const loggedInUser = users.find(user => user.email === data.email && user.password === data.password)
+            if(loggedInUser){
+                alert(`Welcome ${loggedInUser.username}`)
+                props.onAuthentication(loggedInUser.username, true)
     }else{
         alert("Invalid email or password")
+        props.onAuthentication("", false)
     }
   };
 

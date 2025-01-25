@@ -10,10 +10,13 @@ function App() {
   const [userName, setUserName] = useState("Guest User")
   const [count, setCount] = useState(0)
 
+  const getData = (username , authenticated) => {
+    console.log(username , authenticated)
+  }
 
   return (
     <>
-    <Login/>
+    <Login onAuthentication = {getData}/>
       {/* <div className='App h-screen w-screen flex flex-row'>
         <Sidebar user = "Abdullah Feroz"/>
         <Chat/>
