@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Chat from './components/Chat'
 import Sidebar from './components/Sidebar'
+import Login from './components/Login'
 
 function App() {
   const [userName, setUserName] = useState("Guest User")
@@ -12,10 +13,11 @@ function App() {
 
   return (
     <>
-      <div className='App h-screen w-screen flex flex-row'>
+    <Login/>
+      {/* <div className='App h-screen w-screen flex flex-row'>
         <Sidebar user = "Abdullah Feroz"/>
         <Chat/>
-      </div>
+      </div> */}
     </>
   )
 }
