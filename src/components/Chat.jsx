@@ -55,9 +55,9 @@ const Chat = () => {
 
     return (
         <>
-            <div className='flex flex-col bg-gray-100 h-full w-full' >
+            <div className='flex flex-col bg-gradient-to-br from-blue-50 to-blue-100 h-full w-full' >
                 <Header/>
-                <div className="chatArea flex justify-center bg-gray-100 w-full h-[90%] overflow-scroll overflow-x-hidden">
+                <div className="chatArea flex justify-center bg-gradient-to-br from-blue-50 to-blue-100 w-full h-[90%] overflow-scroll overflow-x-hidden">
                     <div className='w-full max-w-4xl h-full'>
                         {displayChat()}
                         <div ref={chatEndRef}></div>

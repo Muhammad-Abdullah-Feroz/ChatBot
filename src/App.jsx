@@ -5,6 +5,7 @@ import './App.css'
 import Chat from './components/Chat'
 import Sidebar from './components/Sidebar'
 import Login from './components/Login'
+import Profile from './components/Profile'
 
 function App() {
   const [userName, setUserName] = useState("Guest User")
@@ -25,8 +26,9 @@ function App() {
     <>{
       authModal ? <Login onAuthentication={getUserData} /> :
         <div className='App h-screen w-screen flex flex-row'>
-          <Sidebar user="Abdullah Feroz" onTabChange = {getTabData} />
+          <Sidebar user={userName} onTabChange = {getTabData} />
           {tab == "chat" && <Chat />}
+          {tab == "profile" && <Profile user = {userName} />}
         </div>
     }
     </>

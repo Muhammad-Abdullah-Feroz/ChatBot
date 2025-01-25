@@ -6,8 +6,8 @@ const Sidebar = (props) => {
   const [tab, setTab] = useState("chat")
 
   useEffect(() => {
-    if (props.user) {
-      const names = props.user.split(" ")
+    if (props.user.username) {
+      const names = props.user.username.split(" ")
       const initials = names[0]?.charAt(0) + names[1]?.charAt(0)
       setInitials(initials.toUpperCase()) // Make initials uppercase for consistency
     }

@@ -21,7 +21,7 @@ const Login = (props) => {
             const loggedInUser = users.find(user => user.email === data.email && user.password === data.password)
             if(loggedInUser){
                 alert(`Welcome ${loggedInUser.username}`)
-                props.onAuthentication(loggedInUser.username, true)
+                props.onAuthentication(loggedInUser, true)
     }else{
         alert("Invalid email or password")
         props.onAuthentication("", false)
