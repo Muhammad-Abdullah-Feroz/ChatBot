@@ -6,12 +6,14 @@ import Chat from './components/Chat'
 import Sidebar from './components/Sidebar'
 
 function App() {
+  const [userName, setUserName] = useState("Guest User")
   const [count, setCount] = useState(0)
+
 
   return (
     <>
       <div className='App h-screen w-screen flex flex-row'>
-        <Sidebar/>
+        <Sidebar user = "Abdullah Feroz"/>
         <Chat/>
       </div>
     </>
