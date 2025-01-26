@@ -1,11 +1,10 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Chat from './components/Chat'
 import Sidebar from './components/Sidebar'
 import Login from './components/Login'
 import Profile from './components/Profile'
+import Signup from './components/Signup'
 
 function App() {
   const [userName, setUserName] = useState("Guest User")
