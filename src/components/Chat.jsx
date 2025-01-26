@@ -1,13 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { GoogleGenerativeAI } from "@google/generative-ai"
 
 import Icon from "../assets/send.png"
 import Header from './Header'
 
 const Chat = () => {
 
-    // const [request, setRequest] = useState({ "role": "user", "content": "" })
-    // const [response, setResponse] = useState({ "role": "assisstant", "content": "" })
 
+    const [genAI, setGenAI] = useState(null)
+    const [model, setModel] = useState(null)
     const [message, setMessage] = useState("")
     const [chat, setChat] = useState([])
     const chatEndRef = useRef(null)
@@ -16,16 +17,27 @@ const Chat = () => {
       chatEndRef.current.scrollIntoView({ behavior: "smooth" })
     }, [chat])
     
+    useEffect(() => {
+
+        async function fetchData(){
+            const gen_AI = new GoogleGenerativeAI(`${import.meta.env.VITE_GEMINI_API_KEY}`);
+            setGenAI(gen_AI)
+            console.log(gen_AI)
+            const modl = await genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+            setModel(modl)
+            console.log(modl)
+        }
+        fetchData()
+    }, [])
+    
 
     const getResponse = async (request) => {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                const res = request.content.toUpperCase()
-                const response = { "role": "assisstant", "content": res }
-                setChat((prevChat) => [...prevChat, response])
-                resolve(response)
-            }, 1000)
-        })
+        const result = await model.generateContent(request.content);
+        console.log(result.response.text());
+
+        const response = { "role": "assisstant", "content": result.response.text() }
+        setChat((prevChat) => [...prevChat, response])
+
     }
 
     const submmitRequest = async () => {
@@ -35,7 +47,6 @@ const Chat = () => {
         setMessage("")
 
         setChat((prevChat) => [...prevChat, newReuest])
-        // setRequest(newReuest)
         await getResponse(newReuest)
     }
 
